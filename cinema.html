@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Uma proposta para Ticiane ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ffb199, #ffd1dc);
+    overflow: hidden;
+}
+
+.card {
+    background: white;
+    width: 90%;
+    max-width: 480px;
+    min-height: 430px;
+    padding: 30px 20px;
+    border-radius: 28px;
+    text-align: center;
+    box-shadow: 0 15px 50px #9b345044;
+    position: relative;
+    z-index: 2;
+}
+
+.heart {
+    font-size: 55px;
+    animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    50% { transform: scale(1.15); }
+}
+
+h1 {
+    color: #e74770;
+    font-size: 26px;
+}
+
+p {
+    color: #777;
+    font-size: 16px;
+}
+
+.zone {
+    position: relative;
+    height: 170px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+button {
+    border: none;
+    padding: 14px 22px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    white-space: nowrap;
+}
+
+.safe {
+    background: #ff477e;
+    color: white;
+    left: 12%;
+    top: 55px;
+}
+
+.safe:hover {
+    background: #e52d66;
+}
+
+.run {
+    background: #777;
+    color: white;
+    left: 57%;
+    top: 55px;
+}
+
+.final {
+    color: #e74770;
+    font-size: 21px;
+    line-height: 1.7;
+    font-weight: bold;
+    animation: appear 1s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.small {
+    font-size: 45px;
+}
+
+.progress {
+    color: #ff477e;
+    font-size: 13px;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+
+    <div class="heart">💗</div>
+
+    <h1>Uma pergunta para você, Ticiane...</h1>
+
+    <p>Tenho uma proposta muito importante.</p>
+
+    <button class="safe"
+        style="position:relative;top:auto;left:auto"
+        onclick="etapa1()">
+        Estou curiosa 👀
+    </button>
+
+</div>
+
+<script>
+
+const card = document.getElementById("card");
+
+// BOTÃO QUE FOGE
+function fugir(botao) {
+
+    const zone = document.querySelector(".zone");
+
+    const maxX = zone.clientWidth - botao.offsetWidth;
+    const maxY = zone.clientHeight - botao.offsetHeight;
+
+    botao.style.left = Math.max(0, Math.random() * maxX) + "px";
+    botao.style.top = Math.max(0, Math.random() * maxY) + "px";
+}
+
+// CRIAR PERGUNTAS
+function pergunta(titulo, boa, ruim, proxima, numero) {
+
+    card.innerHTML = `
+
+        <div class="heart">💗</div>
+
+        <h1>${titulo}</h1>
+
+        <p>Escolha com bastante atenção...</p>
+
+        <div class="zone">
+
+            <button class="safe" id="good">${boa}</button>
+
+            <button class="run" id="bad">${ruim}</button>
+
+        </div>
+
+        <div class="progress">
+            Decisão ${numero} de 6
+        </div>
+    `;
+
+    const good = document.getElementById("good");
+    const bad = document.getElementById("bad");
+
+    good.onclick = proxima;
+
+    bad.addEventListener("pointerenter", () => fugir(bad));
+
+    bad.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        fugir(bad);
+    }, { passive: false });
+
+}
+
+// 1 - CINEMA
+function etapa1() {
+
+    pergunta(
+        "Você aceita ir ao cinema comigo? 🍿",
+        "SIM ❤️",
+        "NÃO 😒",
+        etapa2,
+        1
+    );
+
+}
+
+// 2 - COMIDA
+function etapa2() {
+
+    pergunta(
+        "O que comeremos? 🍔",
+        "McDonald's 🍟",
+        "Burger King 🍔",
+        etapa3,
+        2
+    );
+
+}
+
+// 3 - FILME
+function etapa3() {
+
+    pergunta(
+        "Filme curto ou longo? 🎬",
+        "LONGO 🍿",
+        "CURTO ⏱️",
+        etapa4,
+        3
+    );
+
+}
+
+// 4 - SOBREMESA
+function etapa4() {
+
+    pergunta(
+        "Qual será a sobremesa? 🍰",
+        "Açaí 🍓",
+        "Sorvete 🍦",
+        etapa5,
+        4
+    );
+
+}
+
+// 5 - QUEM PAGA
+function etapa5() {
+
+    pergunta(
+        "E quem vai pagar a conta? 💳",
+        "Ticiane 😂",
+        "Nathan 😎",
+        etapa6,
+        5
+    );
+
+}
+
+// 6 - O PÓS
+function etapa6() {
+
+    pergunta(
+        "E o pós, vai ter? 👀",
+        "SIM 😏",
+        "NÃO 🙄",
+        final,
+        6
+    );
+
+}
+
+// FINAL
+function final() {
+
+    card.innerHTML = `
+
+        <div class="small">🥰💗🎬</div>
+
+        <h1>Convite oficialmente confirmado!</h1>
+
+        <div class="final">
+
+            Muito obrigado, Ticiane,<br>
+            por ser tão parcial! 😂
+
+        </div>
+
+        <p style="margin-top:25px">
+
+            Boa noite e bom dia.<br>
+            Bons sonhos com o Senhor! ❤️
+
+        </p>
+
+        <div class="small">🌙✨</div>
+
+        <p style="font-size:12px;color:#aaa">
+
+            Sua participação foi muito importante.<br>
+            Todas as decisões foram tomadas
+            de maneira extremamente democrática.
+
+        </p>
+
+    `;
+
+}
+
+</script>
+
+</body>
+</html>
