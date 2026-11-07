@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tribunal dos Irmãos</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, #54351d, transparent 55%),
+        linear-gradient(135deg, #160d0a, #392018, #100908);
+
+    color: #fff4dc;
+    font-family: Georgia, serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 570px;
+
+    background: rgba(36, 23, 17, 0.96);
+
+    border: 2px solid #d5a34d;
+    border-radius: 18px;
+
+    padding: 30px 22px;
+
+    text-align: center;
+
+    box-shadow: 0 0 40px #d5a34d35;
+
+    animation: aparecer 1s ease;
+}
+
+.emoji {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: #f4c66b;
+    font-size: 27px;
+    margin: 15px 0;
+}
+
+.sub {
+    color: #d9bd8a;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+}
+
+.alerta {
+    color: #ff7777;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    margin-bottom: 25px;
+    animation: piscar 1s infinite;
+}
+
+p {
+    line-height: 1.7;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #d5a34d;
+    background: #130d09;
+    color: white;
+    font-size: 16px;
+    margin-top: 20px;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 18px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #d5a34d;
+    color: #211309;
+
+    font-weight: bold;
+    font-size: 15px;
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+button:hover {
+    background: #ffe0a0;
+    transform: scale(1.03);
+}
+
+#processo,
+#sentenca {
+    display: none;
+}
+
+#processo {
+    margin-top: 25px;
+}
+
+#barra {
+    width: 100%;
+    height: 12px;
+    background: #483527;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+#progresso {
+    width: 0%;
+    height: 100%;
+    background: #e8b65c;
+    transition: width .15s;
+}
+
+.documento {
+    border: 2px dashed #d5a34d;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background: #170e0a;
+}
+
+.documento h2 {
+    color: #f4c66b;
+    margin-bottom: 15px;
+}
+
+.clausula {
+    border: 2px solid #e8b65c;
+    background: #302015;
+    padding: 20px;
+    margin-top: 25px;
+    border-radius: 12px;
+}
+
+.clausula h2 {
+    color: #f4c66b;
+}
+
+.destaque {
+    color: #ff7777;
+    font-weight: bold;
+}
+
+.assinatura {
+    color: #e8b65c;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+.rodape {
+    margin-top: 25px;
+    color: #a58c6d;
+    font-size: 11px;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes piscar {
+    50% {
+        opacity: .3;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="emoji">⚖️</div>
+
+    <h1>TRIBUNAL DOS IRMÃOS</h1>
+
+    <div class="sub">
+        JUSTIÇA FAMILIAR — PROCESSO Nº 001/2026
+    </div>
+
+    <!-- TELA INICIAL -->
+
+    <div id="inicio">
+
+        <div class="alerta">
+            🚨 INTIMAÇÃO EXTRAORDINÁRIA 🚨
+        </div>
+
+        <p>
+            Prezada Vitória, você foi oficialmente
+            convocada para responder a um processo
+            judicial movido pelo seu próprio irmão.
+        </p>
+
+        <br>
+
+        <p>
+            <strong>Acusações:</strong><br>
+            Perturbação da paz familiar, excesso
+            de teimosia e utilização indevida
+            da paciência do irmão.
+        </p>
+
+        <input
+            type="text"
+            id="nome"
+            value="Vitória"
+            placeholder="Digite seu nome..."
+        >
+
+        <button onclick="iniciar()">
+            ACEITAR INTIMAÇÃO 📜
+        </button>
+
+    </div>
+
+    <!-- INVESTIGAÇÃO -->
+
+    <div id="processo">
+
+        <h2 style="color:#f4c66b;">
+            ANALISANDO O PROCESSO
+        </h2>
+
+        <p id="mensagem">
+            Consultando o juiz...
+        </p>
+
+        <div id="barra">
+            <div id="progresso"></div>
+        </div>
+
+    </div>
+
+    <!-- SENTENÇA -->
+
+    <div id="sentenca">
+
+        <div class="documento">
+
+            <h2>🏆 SENTENÇA OFICIAL 🏆</h2>
+
+            <p id="nomeFinal"></p>
+
+            <br>
+
+            <p>
+                Após uma investigação rigorosa,
+                o tribunal declara a acusada:
+            </p>
+
+            <br>
+
+            <h2 class="destaque">
+                CULPADA! 😂
+            </h2>
+
+            <br>
+
+            <p>
+                <strong>ACUSAÇÕES COMPROVADAS:</strong>
+                <br><br>
+
+                🔸 100% de capacidade de irritar o irmão.<br><br>
+
+                🔸 95% de talento para provocar.<br><br>
+
+                🔸 87% de chances de estar errada
+                e não admitir.<br><br>
+
+                🔸 200% de importância na família.
+            </p>
+
+            <br>
+
+            <h2>VEREDITO FINAL</h2>
+
+            <p>
+                A ré está condenada a reconhecer
+                que tem um irmão extraordinário
+                chamado Nathan.
+            </p>
+
+        </div>
+
+        <!-- CLÁUSULA ESPECIAL DO RIO -->
+
+        <div class="clausula">
+
+            <div style="font-size:40px;">
+                🚨
+            </div>
+
+            <h2>
+                CLÁUSULA ESPECIAL
+            </h2>
+
+            <p style="color:#d9bd8a;font-size:11px;letter-spacing:2px;margin:10px 0 20px;">
+                DETERMINAÇÃO SUPREMA DO IRMÃO
+            </p>
+
+            <p>
+                Fica oficialmente determinado que,
+                <strong>quando Nathan retornar ao Rio de Janeiro</strong>,
+                Vitória deverá cumprir as seguintes determinações:
+            </p>
+
+            <br>
+
+            <p>
+                ⚖️ Fazer tudo que o irmão mandar.<br><br>
+
+                ⚖️ Não questionar as ordens recebidas.<br><br>
+
+                ⚖️ Aceitar a autoridade máxima de Nathan.<br><br>
+
+                ⚖️ Não utilizar a famosa frase:
+                "Não vou fazer".
+            </p>
+
+            <br>
+
+            <h2 class="destaque">
+                SENTENÇA IRRECORRÍVEL!
+            </h2>
+
+            <p style="margin-top:15px;">
+                O descumprimento desta cláusula
+                resultará em uma nova audiência familiar.
+            </p>
+
+            <p class="assinatura">
+                Assinado: Nathan,<br>
+                Supremo Juiz dos Irmãos.
+            </p>
+
+        </div>
+
+        <button onclick="compartilhar()">
+            📲 COMPARTILHAR SENTENÇA
+        </button>
+
+        <button
+            onclick="location.reload()"
+            style="background:#483527;color:white;">
+            NOVO PROCESSO
+        </button>
+
+    </div>
+
+    <div class="rodape">
+        Tribunal fictício — 2026<br>
+        Nenhum direito foi violado.
+        Apenas a paciência do irmão.
+    </div>
+
+</div>
+
+<script>
+
+// INICIAR INVESTIGAÇÃO
+
+function iniciar() {
+
+    const nome = document
+        .getElementById("nome")
+        .value.trim();
+
+    if (!nome) {
+        alert("A ré precisa se identificar! 😂");
+        return;
+    }
+
+    document.getElementById("inicio").style.display = "none";
+
+    document.getElementById("processo").style.display = "block";
+
+    const mensagens = [
+        "Ouvindo as testemunhas...",
+        "Analisando as fofocas familiares...",
+        "Consultando a mãe como testemunha...",
+        "Verificando o histórico de perturbação...",
+        "O juiz está perdendo a paciência...",
+        "Preparando a sentença...",
+        "Nathan está sendo consultado..."
+    ];
+
+    let valor = 0;
+
+    const intervalo = setInterval(() => {
+
+        valor += 2;
+
+        document.getElementById("progresso").style.width =
+            valor + "%";
+
+        const indice = Math.min(
+            Math.floor(valor / 15),
+            mensagens.length - 1
+        );
+
+        document.getElementById("mensagem").textContent =
+            mensagens[indice];
+
+        if (valor >= 100) {
+
+            clearInterval(intervalo);
+
+            document.getElementById("processo").style.display = "none";
+
+            document.getElementById("nomeFinal").textContent =
+                "Acusada: " + nome;
+
+            document.getElementById("sentenca").style.display = "block";
+
+        }
+
+    }, 100);
+
+}
+
+// COMPARTILHAR SENTENÇA
+
+function compartilhar() {
+
+    const nome = document.getElementById("nome").value;
+
+    const texto =
+        "⚖️ TRIBUNAL DOS IRMÃOS ⚖️\n\n" +
+        nome + " foi considerada CULPADA!\n\n" +
+        "🚨 CLÁUSULA ESPECIAL:\n" +
+        "Quando Nathan voltar ao Rio de Janeiro, " +
+        "Vitória deverá fazer tudo que ele mandar! 😂\n\n" +
+        "Sentença assinada pelo Supremo Juiz Nathan.";
+
+    if (navigator.share) {
+
+        navigator.share({
+            title: "Sentença oficial",
+            text: texto
+        });
+
+    } else {
+
+        navigator.clipboard.writeText(texto)
+            .then(() => {
+                alert("Sentença copiada! Agora é só enviar 😂");
+            })
+            .catch(() => {
+                alert("Não foi possível copiar o texto.");
+            });
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
+
