@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operação Irmã | Nathan Industries</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Nunito:wght@400;600;700;900&display=swap');
+
+:root {
+  --pink: #ff2525;
+  --purple: #a00020;
+  --bg: #090707;
+  --white: #fff5f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--white);
+  background:
+    radial-gradient(ellipse at 15% 15%, #8b000055, transparent 45%),
+    radial-gradient(ellipse at 85% 80%, #ff000033, transparent 45%),
+    var(--bg);
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .17;
+  background-image: radial-gradient(#fff 1px, transparent 1px);
+  background-size: 35px 35px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 7%;
+  border-bottom: 1px solid #ffffff18;
+  font-family: Orbitron;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.status {
+  color: #ff5555;
+}
+
+.container {
+  width: min(650px, 90%);
+  margin: 65px auto;
+  position: relative;
+}
+
+.tag {
+  color: var(--pink);
+  letter-spacing: 4px;
+  font-family: Orbitron;
+  font-size: 10px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-family: Orbitron;
+  font-size: clamp(35px, 9vw, 65px);
+  line-height: 1.12;
+  margin: 0 0 20px;
+  font-weight: 900;
+  background: linear-gradient(100deg, white, #ff7777, #ff2525);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+h2 {
+  font-family: Orbitron;
+  font-size: clamp(20px, 5vw, 29px);
+  line-height: 1.4;
+}
+
+p {
+  color: #d5caca;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.panel {
+  border: 1px solid #ff252538;
+  background: #ffffff09;
+  backdrop-filter: blur(18px);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 15px 70px #0008;
+  margin-top: 25px;
+}
+
+button {
+  width: 100%;
+  display: block;
+  padding: 16px 18px;
+  margin-top: 12px;
+  border: 1px solid #ffffff22;
+  border-radius: 12px;
+  background: #ffffff0b;
+  color: white;
+  font-family: Nunito;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  text-align: left;
+  transition: .25s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  border-color: var(--pink);
+  background: #ff252525;
+  box-shadow: 0 0 20px #ff252522;
+}
+
+button.primary {
+  text-align: center;
+  background: linear-gradient(100deg, #a00020, #ff2525);
+  border: none;
+  font-family: Orbitron;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+button.primary:hover {
+  box-shadow: 0 0 30px #ff252566;
+}
+
+.small {
+  font-size: 11px;
+  color: #817575;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.progress {
+  width: 100%;
+  height: 4px;
+  background: #ffffff16;
+  border-radius: 20px;
+  margin: 20px 0;
+}
+
+#bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #a00020, #ff2525);
+  border-radius: 20px;
+  transition: .5s;
+}
+
+#screen {
+  animation: appear .5s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.emoji {
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+.terminal {
+  color: #ff7777;
+  font-family: monospace;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.result {
+  font-family: Orbitron;
+  font-size: 18px;
+  color: #ff5555;
+  margin: 20px 0;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #6e6363;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.secret {
+  border-left: 3px solid #ff2525;
+  padding-left: 18px;
+  margin-top: 20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <span>NATHAN INDUSTRIES ©</span>
+  <span class="status">● SISTEMA ONLINE</span>
+</header>
+
+<main class="container">
+
+  <div class="tag">CLASSIFICAÇÃO: ULTRASSECRETO</div>
+
+  <div class="progress">
+    <div id="bar"></div>
+  </div>
+
+  <div id="screen">
+
+    <div class="emoji">🛰️</div>
+
+    <div class="tag">ARQUIVO Nº 001 / FAMÍLIA</div>
+
+    <h1>OPERAÇÃO<br>IRMÃ.</h1>
+
+    <p>
+      Uma pessoa foi selecionada para participar
+      de um experimento altamente confidencial.
+    </p>
+
+    <div class="panel">
+
+      <div class="terminal">
+        > IDENTIDADE: NÃO CONFIRMADA<br>
+        > NÍVEL DE PERICULOSIDADE: ALTO<br>
+        > GRAU DE TEIMOSIA: INDEFINIDO<br>
+        > AUTORIZAÇÃO: PENDENTE
+      </div>
+
+      <p>
+        O sistema precisa descobrir se você está preparada
+        para lidar com seu próprio irmão.
+      </p>
+
+      <button class="primary" onclick="start()">
+        INICIAR INVESTIGAÇÃO →
+      </button>
+
+    </div>
+
+    <div class="small">
+      AVISO: ALGUMAS RESPOSTAS PODERÃO SER UTILIZADAS CONTRA VOCÊ.
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  DESENVOLVIDO POR NATHAN.DEV · PROJETO FAMILIAR
+</footer>
+
+<script>
+
+const screen = document.getElementById("screen");
+const bar = document.getElementById("bar");
+
+let step = 0;
+let points = 0;
+
+function render(content) {
+  screen.style.animation = "none";
+  screen.offsetHeight;
+  screen.style.animation = "appear .5s ease";
+  screen.innerHTML = content;
+}
+
+function progress(n) {
+  bar.style.width = n + "%";
+}
+
+function start() {
+  step = 1;
+  points = 0;
+  progress(10);
+
+  question(
+    "🔍",
+    "FASE 01 — IDENTIFICAÇÃO",
+    "Primeiramente...",
+    "Como você descreveria seu irmão?",
+    [
+      "A) Melhor irmão da história como sempre",
+      "B) 🙄",
+      "C) Alguém que nem falta faz",
+      "D) Infelizmente é meu irmão"
+    ]
+  );
+}
+
+function question(emoji, tag, title, description, options) {
+
+  render(`
+    <div class="emoji">${emoji}</div>
+    <div class="tag">${tag}</div>
+    <h2>${title}</h2>
+    <p>${description}</p>
+
+    <div class="panel">
+
+      ${options.map((option, i) => `
+        <button onclick="answer(${i})">
+          ${option}
+        </button>
+      `).join("")}
+
+    </div>
+  `);
+}
+
+function answer(choice) {
+
+  // Fase 03: todas as respostas significam que ela fará o favor.
+  if (step === 3) {
+    points += 2;
+  } else {
+    points += choice + 1;
+  }
+
+  step++;
+
+  if (step === 2) {
+    progress(25);
+
+    question(
+      "🧠",
+      "FASE 02 — PSICOLOGIA",
+      "Uma situação delicada.",
+      "Seu irmão chega no Rio depois de meses longe. Qual sua reação?",
+      [
+        "A) Finjo que nem vi até ele voltar",
+        "B) Pergunto oq ele trouxe pra mim antes de tudo",
+        "C) Abraço imediatamente",
+        "D) Nada, nem conheço"
+      ]
+    );
+
+  } else if (step === 3) {
+    progress(40);
+
+    question(
+      "🚨",
+      "FASE 03 — TESTE DE LEALDADE",
+      "Uma missão impossível.",
+      "Se seu irmão pedir um favor às 23h59, você...",
+      [
+        "A) Faço",
+        "B) Faço",
+        "C) Faço",
+        "D) Todas as opções acima"
+      ]
+    );
+
+  } else if (step === 4) {
+    progress(55);
+
+    question(
+      "💰",
+      "FASE 04 — ECONOMIA DOMÉSTICA",
+      "Uma proposta financeira.",
+      "Seu irmão ganhou na loteria. O que você faz?",
+      [
+        "A) Peço metade e vou embora",
+        "B) Já escolhi minha casa",
+        "C) Pergunto se ele esqueceu de alguém",
+        "D) Pego tudo e mando ele voltar"
+      ]
+    );
+
+  } else if (step === 5) {
+    progress(70);
+
+    question(
+      "🎮",
+      "FASE 05 — TESTE DE SOBREVIVÊNCIA",
+      "Uma última questão.",
+      'Seu irmão diz: "Quando eu voltar, você vai fazer tudo que eu mandar."',
+      [
+        "A) KKKKKKKKKKKKKKKKKKKKKKKK",
+        "B) Sim",
+        "C) Porra nenhuma Nathan",
+        "D) Eu que mando nessa porra"
+      ]
+    );
+
+  } else if (step === 6) {
+    progress(85);
+
+    render(`
+      <div class="emoji">📜</div>
+
+      <div class="tag">FASE 06 — CONTRATO FAMILIAR</div>
+
+      <h2>Você aceita os termos?</h2>
+
+      <p>
+        Ao retornar ao Rio, seu irmão terá direito a:
+      </p>
+
+      <div class="panel">
+
+        <p>✓ Escolher o filme.</p>
+        <p>✓ Pedir favores ocasionais.</p>
+        <p>✓ Fazer piadas sem sentido.</p>
+        <p>✓ Reivindicar a autoridade de irmão mais velho.</p>
+        <p>✓ Lembrar você de que está com saudade.</p>
+
+        <button onclick="final()">
+          ACEITO OS TERMOS
+        </button>
+
+        <button onclick="final()">
+          ACEITO PORRA NENHUMA, NEM VEM
+        </button>
+
+      </div>
+    `);
+  }
+}
+
+function final() {
+
+  progress(100);
+
+  let title;
+  let message;
+  let emoji;
+
+  if (points <= 11) {
+    title = "IRMÃ SOB INVESTIGAÇÃO";
+    emoji = "🕵️‍♀️";
+    message = "O sistema detectou um nível preocupante de rebeldia. Recomenda-se monitoramento familiar.";
+
+  } else if (points <= 17) {
+    title = "IRMÃ DE ALTA PERICULOSIDADE";
+    emoji = "🚨";
+    message = "Você demonstra sinais de negociação, teimosia e uma habilidade impressionante de fugir das responsabilidades.";
+
+  } else {
+    title = "IRMÃ APROVADA COM RESSALVAS";
+    emoji = "👑";
+    message = "Você passou! Mas o sistema ainda não confia completamente em você.";
+  }
+
+  render(`
+    <div class="emoji">${emoji}</div>
+
+    <div class="tag">RELATÓRIO FINAL — CONFIDENCIAL</div>
+
+    <h2>${title}</h2>
+
+    <div class="panel">
+
+      <p>${message}</p>
+
+      <div class="result">
+        PONTUAÇÃO: ${points} / 22
+      </div>
+
+      <div class="terminal">
+        > ANÁLISE CONCLUÍDA<br>
+        > IDENTIDADE VALIDADA<br>
+        > VÍNCULO FAMILIAR: PERMANENTE<br>
+        > SAUDADE: NÃO CALCULÁVEL
+      </div>
+
+    </div>
+
+    <h2>Mas espere...</h2>
+
+    <p>
+      Existe uma última mensagem que não estava no questionário.
+    </p>
+
+    <button class="primary" onclick="reveal()">
+      DESBLOQUEAR MENSAGEM SECRETA ❤️
+    </button>
+  `);
+}
+
+function reveal() {
+
+  render(`
+    <div class="emoji">❤️</div>
+
+    <div class="tag">MENSAGEM PESSOAL — NATHAN</div>
+
+    <h1>VOCÊ NÃO TEM ESCOLHA.</h1>
+
+    <div class="panel">
+
+      <h2>Você não tem escolha de nada.</h2>
+
+      <div class="secret">
+
+        <p>
+          SABE QUE EU TE AMO NÉ? FAÇO ISSO TUDO
+          PRA TENTAR TE ALEGRAR DEPOIS DE TUDO
+          ISSO QUE VC PASSA
+        </p>
+
+      </div>
+
+      <h2>❤️</h2>
+
+      <p class="small">
+        — Nathan, teu irmão paraíba
+      </p>
+
+    </div>
+
+    <button class="primary" onclick="location.reload()">
+      JOGAR NOVAMENTE ↻
+    </button>
+  `);
+}
+
+</script>
+
+</body>
+</html>
